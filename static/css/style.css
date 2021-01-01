@@ -1,0 +1,441 @@
+clea
+h1 {
+    margin: 0px 0px 0px 0px;
+    text-align:center;
+    padding: 0;
+    font-family: 'Noto Sans';
+    src: local('Noto Sans'), local('NotoSans'), url('notosans.woff2')
+    format('woff2'), url('notosans.woff') format('woff'), url('notosans.ttf')
+    format('truetype');
+    background: linear-gradient(rgb(110,112,120), rgb(81,81,86)) rgb(110,112,120);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+    color: rgb(209,209,217);
+    border-radius: 3px;
+    box-shadow:
+    0 1px rgba(255,255,255,.2) inset,
+    0 3px 5px rgba(0,1,6,.5),
+    0 0 1px 1px rgba(0,1,6,.2);
+    transition: .2s ease-in-out;
+}
+
+h2 {
+    margin: 20px 0px 20px 10px;
+    text-align:center;
+    padding: 0;
+    font-family: 'Noto Sans';
+    src: local('Noto Sans'), local('NotoSans'), url('notosans.woff2')
+    format('woff2'), url('notosans.woff') format('woff'), url('notosans.ttf')
+    format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-size: 28px;
+    color: #2b292e;
+}
+
+h3 {
+    margin: 20px 0px 20px 10px;
+    text-align:center;
+    padding: 0;
+    font-family: 'Noto Sans';
+    src: local('Noto Sans'), local('NotoSans'), url('notosans.woff2')
+    format('woff2'), url('notosans.woff') format('woff'), url('notosans.ttf')
+    format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-size: 28px;
+    color: #2b292e;
+    }
+
+h4 {
+    margin: 20px 0px 20px 10px;
+    text-align:center;
+    padding: 0;
+    font-family: 'Noto Sans';
+    src: local('Noto Sans'), local('NotoSans'), url('notosans.woff2')
+    format('woff2'), url('notosans.woff') format('woff'), url('notosans.ttf')
+    format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    color: #2b292e;
+    }
+
+h5 {
+    margin: 20px 0px 20px 10px;
+    text-align:left;
+    padding: 0;
+    font-family: 'Noto Sans';
+    src: local('Noto Sans'), local('NotoSans'), url('notosans.woff2')
+    format('woff2'), url('notosans.woff') format('woff'), url('notosans.ttf')
+    format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #2b292e;
+    }
+
+body {
+    margin: 20px 30px 20px 10px;
+    padding: 0;
+    font-family: 'Noto Sans';
+    src: local('Noto Sans'), local('NotoSans'), url('notosans.woff2')
+    format('woff2'), url('notosans.woff') format('woff'), url('notosans.ttf')
+    format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    color: #2b292e;
+    font-size: 24px;
+    background: #e5e3e8;
+}
+
+#login_form
+{
+    width: 400px;
+    margin: 10px auto 10px auto;
+    padding: 10px;
+    font-family: 'Noto Sans';
+    src: local('Noto Sans'), local('NotoSans'), url('notosans.woff2')
+    format('woff2'), url('notosans.woff') format('woff'), url('notosans.ttf')
+    format('truetype');
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    color: #575869;
+    background: #c7ccd6;
+    box-shadow: 3px 3px 7px #aaa;
+}
+
+a.button28 {
+  position: relative;
+  display: inline-block;
+  font-size: 90%;
+  font-weight: 700;
+  color: rgb(209,209,217);
+  text-decoration: none;
+  text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+  padding: .5em 1em;
+  outline: none;
+  border-radius: 3px;
+  background: linear-gradient(rgb(110,112,120), rgb(81,81,86)) rgb(110,112,120);
+  box-shadow:
+   0 1px rgba(255,255,255,.2) inset,
+   0 3px 5px rgba(0,1,6,.5),
+   0 0 1px 1px rgba(0,1,6,.2);
+  transition: .2s ease-in-out;
+}
+
+a.button28:hover:not(:active) {
+  background: linear-gradient(rgb(126,126,134), rgb(70,71,76)) rgb(126,126,134);
+}
+
+a.button28:active {
+  top: 1px;
+  background: linear-gradient(rgb(76,77,82), rgb(56,57,62)) rgb(76,77,82);
+  box-shadow:
+   0 0 1px rgba(0,0,0,.5) inset,
+   0 2px 3px rgba(0,0,0,.5) inset,
+   0 1px 1px rgba(255,255,255,.1);
+}
+
+#button28_center {
+margin: -40px 10px 20px 29px;
+padding: 10 10 10 10;
+}
+
+.copyright1{
+margin: 600px auto 0;
+ont-family: 'Noto Sans';
+src: local('Noto Sans'), local('NotoSans'), url('notosans.woff2')
+format('woff2'), url('notosans.woff') format('woff'), url('notosans.ttf')
+format('truetype')
+font-style: normal;
+font-size: 18px;
+text-align: center;
+border-top: 2px solid #000000;
+}
+
+.copyright2{
+margin: 0px auto 0;
+ont-family: 'Noto Sans';
+src: local('Noto Sans'), local('NotoSans'), url('notosans.woff2')
+format('woff2'), url('notosans.woff') format('woff'), url('notosans.ttf')
+format('truetype')
+font-style: normal;
+font-size: 18px;
+text-align: center;
+}
+
+#Acontainer {
+margin: 80px 0px 0px 0px;
+width: 1800px;
+}
+
+#AK1 {
+width: 300px;
+height: 300px;
+float: left;
+background: #F4A460;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#AK2 {
+width: 300px;
+height: 300px;
+float: left;
+background: #F4A460;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#AK3 {
+width: 300px;
+height: 300px;
+float: left;
+background: #F4A460;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#AK4 {
+width: 300px;
+height: 300px;
+float: left;
+background: #F4A460;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#Bcontainer {
+margin: 80px 0px 0px 0px;
+width: 1800px;
+}
+
+#BK1 {
+width: 300px;
+height: 300px;
+float: left;
+background: #DDA0DD;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#BK2 {
+width: 300px;
+height: 300px;
+float: left;
+background: #DDA0DD;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#BK3 {
+width: 300px;
+height: 300px;
+float: left;
+background: #DDA0DD;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#BK4 {
+width: 300px;
+height: 300px;
+float: left;
+background: #DDA0DD;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#Mcontainer {
+margin: 80px 0px 0px 0px;
+width: 1800px;
+}
+
+#MK1 {
+width: 320px;
+height: 320px;
+float: left;
+background: #D3D3D3;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 0px;
+}
+
+#MK2 {
+width: 320px;
+height: 320px;
+float: left;
+background: #D3D3D3;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#MK3 {
+width: 320px;
+height: 320px;
+float: left;
+background: #D3D3D3;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#MK4 {
+width: 320px;
+height: 320px;
+float: left;
+background: #D3D3D3;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 35px;
+}
+
+#Icontainer {
+float: left;
+width: 1800px;
+margin: 0 auto;
+}
+
+#IK1 {
+width: 250px;
+height: 180px;
+float: left;
+background: #FFC0CB;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 15px;
+}
+
+#IK2 {
+width: 250px;
+height: 180px;
+float: left;
+background: #FFC0CB;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 25px;
+}
+
+#IK3 {
+width: 250px;
+height: 180px;
+float: left;
+background: #FFC0CB;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 25px;
+}
+
+#IK4 {
+width: 250px;
+height: 180px;
+float: left;
+background: #FFC0CB;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 25px;
+}
+
+#IK5 {
+width: 250px;
+height: 180px;
+float: left;
+background: #FFC0CB;
+display: inline-block;
+vertical-align: middle;
+border-radius: 6px;
+margin-left: 25px;
+}
+
+#KI1 {
+width: 100px;
+height: 80px;
+padding: 40;
+float: left;
+display: inline-block;
+vertical-align: middle;
+}
+
+#KI2 {
+width: 100px;
+height: 80px;
+padding: 0;
+float: right;
+display: inline-block;
+vertical-align: middle;
+}
+
+#IMG_center {
+margin: 0px 100px 0px 32px;
+
+}
+
+#log_1 {
+margin: 50px 0px 0px 25px;
+}
+
+#log_2 {
+margin: 0px 0px 0px 10px;
+}
+
+
+.button29 {
+  position: relative;
+  display: inline-block;
+  font-size: 90%;
+  font-weight: 700;
+  color: rgb(209,209,217);
+  text-decoration: none;
+  text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+  padding: .5em 1em;
+  outline: none;
+  border-radius: 3px;
+  background: linear-gradient(rgb(110,112,120), rgb(81,81,86)) rgb(110,112,120);
+  box-shadow:
+   0 1px rgba(255,255,255,.2) inset,
+   0 3px 5px rgba(0,1,6,.5),
+   0 0 1px 1px rgba(0,1,6,.2);
+  transition: .2s ease-in-out;
+}
+
+.button29:hover:not(:active) {
+  background: linear-gradient(rgb(126,126,134), rgb(70,71,76)) rgb(126,126,134);
+}
+
+.button29:active {
+  top: 1px;
+  background: linear-gradient(rgb(76,77,82), rgb(56,57,62)) rgb(76,77,82);
+  box-shadow:
+   0 0 1px rgba(0,0,0,.5) inset,
+   0 2px 3px rgba(0,0,0,.5) inset,
+   0 1px 1px rgba(255,255,255,.1);
+}
+

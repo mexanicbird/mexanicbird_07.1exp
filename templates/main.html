@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% block content %}
+{{super()}}
+<h2>Системы сбора и обработки данных</h2>
+<p><a href="{{ url_for('login')}}" class="button28">Назад</a>
+<body>
+<div id="Mcontainer">
+    <div id="MK1">
+        <h3>Московская нора</h3>
+        <img src="{{ url_for('static', filename='img1.png')}}" width="255" height="150" id="IMG_center" alt="изображение"/>
+        <p><a href="{{ url_for('moskowhole')}}" class="button28" id="button28_center">Перейти к подсистеме</a>
+    </div>
+    <div id="MK2">
+        <h3>Южная нора</h3>
+        <img src="{{ url_for('static', filename='img2.png')}}" width="255" height="150" id="IMG_center" alt="изображение"/>
+    <p><a href="{{ url_for('southhole')}}" class="button28" id="button28_center">Перейти к подсистеме</a>
+    </div>
+    <div id="MK3">
+        <h3>Рабочий проект_1</h3>
+        <img src="{{ url_for('static', filename='img3.png')}}" width="255" height="150" id="IMG_center" alt="изображение"/>
+    <p><a href="{{ url_for('work_1')}}" class="button28" id="button28_center">Перейти к подсистеме</a>
+    </div>
+    <div id="MK4">
+        <h3>Рабочий проект_2</h3>
+        <img src="{{ url_for('static', filename='img4.png')}}" width="255" height="150" id="IMG_center" alt="изображение"/>
+    <p><a href="{{ url_for('work_2')}}" class="button28" id="button28_center">Перейти к подсистеме</a>
+    </div>
+</div>
+</body>
+
+{% endblock %}
+

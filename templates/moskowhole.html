@@ -1,0 +1,64 @@
+
+{% extends 'base.html'%}
+{% block content %}
+{{super()}}
+<h2>Параметры</h2>
+<p><a href="{{ url_for('main')}}" class="button28">Назад</a>
+<h2>Прибор Ambient_St1</h2>
+
+
+<body>
+<div id="Icontainer">
+    <div id="IK1">
+        <h3>Температура на улице</h3>
+            <div id="KI1">
+                <h3>{{t1}}</h3>
+            </div>
+            <div id="KI2">
+                <h3>C</h3>
+            </div>
+    </div>
+    <div id="IK2">
+        <h3>Влажность на улице</h3>
+            <div id="KI1">
+                <h3>{{h1}}</h3>
+            </div>
+            <div id="KI2">
+                <h3>%RH</h3>
+            </div>
+    </div>
+
+    <div id="IK3">
+        <h3>Температура в помещении</h3>
+         <div id="KI1">
+            <h3>{{t2}}</h3>
+         </div>
+         <div id="KI2">
+             <h3>C</h3>
+         </div>
+    </div>
+    <div id="IK4">
+        <h3>Влажность в помещении</h3>
+         <div id="KI1">
+             <h3>{{h2}}</h3>
+         </div>
+         <div id="KI2">
+             <h3>%RH</h3>
+         </div>
+    </div>
+    <div id="IK5">
+        <h3>Атмосферное давление</h3>
+        <div id="KI1">
+            <h3>{{p1}}</h3>
+        </div>
+        <div id="KI2">
+             <h3>мм</h3>
+         </div>
+    </div>
+</div>
+</body>
+
+
+
+<meta http-equiv="refresh" content="5">
+{% endblock %}

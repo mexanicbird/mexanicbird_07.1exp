@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% block content %}
+{{super()}}
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<form action="/login" method="post">
+<p><label>Логин: </label> <input type="text" id=log_1 name="users" value="" required/>
+<p><label>Пароль: </label> <input type="password" id=log_2 name="psw" value="" required/>
+<p><input type="checkbox" name="remainme"/> Запомнить меня
+<p><input  type="submit" class="button29"value="Войти"/>
+<hr align="left" width="300px">
+</form>
+{% endblock %}

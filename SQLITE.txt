@@ -1,0 +1,30 @@
+это создание базы данных
+from app import create_db
+create_db()
+
+from werkzeug.security import generate_password_hash, check_password_hash
+
+generate_password_hash()
+check_password_hash()
+
+hash3 = generate_password_hash("ARewQA14")
+
+
+
+
+
+    ######
+@app.route("/")
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if 'userLogged' in session:
+        return redirect(url_for('profile', username=session['userLogged']))
+    elif request.method == "POST" and request.form['username'] == "Admin" and request.form['psw'] == "Admin":
+        session ['userLogged'] = request.form['username']
+        #return redirect(url_for('profile', username=session['userLogged']))
+        return redirect(url_for('main', username=session['userLogged']))
+    return  render_template('login.html', title="Авторизация")
+    #print(request.form['username'])
+    #print(request.form['psw'])
+    #print(url_for("login"))
+
