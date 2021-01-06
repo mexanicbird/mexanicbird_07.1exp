@@ -40,12 +40,9 @@ def receive_data_from_server():
 
     """цикл передачи данных"""
     while True:
+
         """Запрос точного времени"""
         time_now = datetime.datetime.now()
-
-        """обнуляем массивы перед запросом"""
-        data = 0
-        data_str = 0
 
         try:
             data = conn.recv(4096)
@@ -185,10 +182,9 @@ def receive_data_from_server():
             if i == 'q':
                 conn.close()
 
-        print(colored("Полученные данные: ", 'yellow', attrs=['reverse', 'blink']))
+        print(colored("Полученные данные: ", 'green', attrs=['reverse', 'blink']))
         """обработка и печать выбранных строк"""
 
-        """обнуляем массивы"""
         try:
             del res_a_str[0]
         except:
@@ -300,25 +296,15 @@ def receive_data_from_server():
         """печать переменных флоат"""
         print(colored("Переменные флоат: ", 'magenta', attrs=['reverse', 'blink']))
         print(colored(res_a_float, 'magenta'))
-        res_a_str.clear()
         print(colored(res_f_float, 'magenta'))
-        res_a_str.clear()
         print(colored(res_c_float, 'magenta'))
-        res_a_str.clear()
         print(colored(res_d_float, 'magenta'))
-        res_d_str.clear()
         print(colored(res_e_float, 'magenta'))
-        res_e_str.clear()
         print(colored(res_g_float, 'magenta'))
-        res_g_str.clear()
         print(colored(res_h_float, 'magenta'))
-        res_h_str.clear()
         print(colored(res_i_float, 'magenta'))
-        res_i_str.clear()
         print(colored(res_k_float, 'magenta'))
-        res_k_str.clear()
         print(colored(res_l_float, 'magenta'))
-        res_l_str.clear()
         print('')
 
         """если нет данных выход из цикла"""
@@ -327,6 +313,18 @@ def receive_data_from_server():
 
         """обратная отправка данных"""
         #conn.send(data)
+
+    """обнуляем массивы"""
+    res_a_str.clear()
+    res_f_str.clear()
+    res_c_str.clear()
+    res_d_str.clear()
+    res_e_str.clear()
+    res_g_str.clear()
+    res_h_str.clear()
+    res_i_str.clear()
+    res_k_str.clear()
+    res_l_str.clear()
 
     """Закрываем подключение"""
     conn.close()
