@@ -2,6 +2,7 @@
 import socket
 from termcolor import colored
 import datetime
+import time
 
 """переменные"""
 
@@ -279,7 +280,13 @@ def receive_data_from_server():
     """Закрываем подключение"""
     #conn.close()
 
-#j = 0
-#for j in range(7):
-    #j = j + 1
-receive_data_from_server()
+def print_Data_001(j):
+    print(colored("Iteration  " + str(j) + ":", 'red', attrs=['reverse', 'blink']))
+
+
+j = 0
+while True:
+    j = j + 1
+    receive_data_from_server()
+    print_Data_001(j)
+    time.sleep(1)
