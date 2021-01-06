@@ -28,7 +28,6 @@ res_i_float = None
 res_k_float = None
 res_l_float = None
 
-
 """функция получения данных от домашнего сервера"""
 def receive_data_from_server():
     global res_a_str
@@ -43,6 +42,11 @@ def receive_data_from_server():
     while True:
         """Запрос точного времени"""
         time_now = datetime.datetime.now()
+
+        """обнуляем массивы перед запросом"""
+        data = 0
+        data_str = 0
+
         try:
             data = conn.recv(4096)
         except:
@@ -56,7 +60,8 @@ def receive_data_from_server():
         data_str = data.decode('utf-8')
         print(colored(data_str, 'green', ))
         data_str_num = len(data_str)
-        print(colored("Длина массива: " + str(data_str_num), 'blue'))
+        print ('\n')
+        print(colored("Длина массива: ", 'blue', attrs=['reverse', 'blink']))
 
         """начало строк по меткам"""
         try:
@@ -101,16 +106,16 @@ def receive_data_from_server():
             num_data_l = None
 
         """печать положений строк"""
-        print(colored("aaa: " + str(num_data_a), 'blue'))
-        print(colored("fff: " + str(num_data_f), 'blue'))
-        print(colored("ccc: " + str(num_data_c), 'blue'))
-        print(colored("ddd: " + str(num_data_d), 'blue'))
-        print(colored("eee: " + str(num_data_e), 'blue'))
-        print(colored("ggg: " + str(num_data_g), 'blue'))
-        print(colored("hhh: " + str(num_data_h), 'blue'))
-        print(colored("iii: " + str(num_data_i), 'blue'))
-        print(colored("kkk: " + str(num_data_k), 'blue'))
-        print(colored("lll: " + str(num_data_l), 'blue'))
+        print(colored("number a: " + str(num_data_a), 'blue'))
+        print(colored("number f: " + str(num_data_f), 'blue'))
+        print(colored("number c: " + str(num_data_c), 'blue'))
+        print(colored("number d: " + str(num_data_d), 'blue'))
+        print(colored("number e: " + str(num_data_e), 'blue'))
+        print(colored("number g: " + str(num_data_g), 'blue'))
+        print(colored("number h: " + str(num_data_h), 'blue'))
+        print(colored("number i: " + str(num_data_i), 'blue'))
+        print(colored("number k: " + str(num_data_k), 'blue'))
+        print(colored("number l: " + str(num_data_l), 'blue'))
         print('\n')
 
         """перебор массива"""
@@ -183,17 +188,44 @@ def receive_data_from_server():
         print(colored("Полученные данные: ", 'yellow', attrs=['reverse', 'blink']))
         """обработка и печать выбранных строк"""
 
-        """обнуляем массив"""
+        """обнуляем массивы"""
         try:
             del res_a_str[0]
+        except:
+            break
+        try:
             del res_f_str[0]
+        except:
+            break
+        try:
             del res_c_str[0]
+        except:
+            break
+        try:
             del res_d_str[0]
+        except:
+            break
+        try:
             del res_e_str[0]
+        except:
+            break
+        try:
             del res_g_str[0]
+        except:
+            break
+        try:
             del res_h_str[0]
+        except:
+            break
+        try:
             del res_i_str[0]
+        except:
+            break
+        try:
             del res_k_str[0]
+        except:
+            break
+        try:
             del res_l_str[0]
         except:
             break
@@ -210,29 +242,46 @@ def receive_data_from_server():
         res_k_str_b = ''.join(res_k_str)
         res_l_str_b = ''.join(res_l_str)
 
-
         """переводим во флоат"""
         try:
             res_a_float = float(res_a_str_b)
-            res_f_float = float(res_f_str_b)
-            res_c_float = float(res_c_str_b)
-            res_d_float = float(res_d_str_b)
-            res_e_float = float(res_e_str_b)
-            res_g_float = float(res_g_str_b)
-            res_h_float = float(res_h_str_b)
-            res_i_float = float(res_i_str_b)
-            res_k_float = float(res_k_str_b)
-            res_l_float = float(res_l_str_b)
         except:
             res_a_float = None
+        try:
+            res_f_float = float(res_f_str_b)
+        except:
             res_f_float = None
+        try:
+            res_c_float = float(res_c_str_b)
+        except:
             res_c_float = None
+        try:
+            res_d_float = float(res_d_str_b)
+        except:
             res_d_float = None
+        try:
+            res_e_float = float(res_e_str_b)
+        except:
             res_e_float = None
+        try:
+            res_g_float = float(res_g_str_b)
+        except:
             res_g_float = None
+        try:
+            res_h_float = float(res_h_str_b)
+        except:
             res_h_float = None
+        try:
+            res_i_float = float(res_i_str_b)
+        except:
             res_i_float = None
+        try:
+            res_k_float = float(res_k_str_b)
+        except:
             res_k_float = None
+        try:
+            res_l_float = float(res_l_str_b)
+        except:
             res_l_float = None
 
         """печать переменных в строках"""
@@ -246,9 +295,10 @@ def receive_data_from_server():
         print(colored(res_i_str, 'green', ))
         print(colored(res_k_str, 'green', ))
         print(colored(res_l_str, 'green', ))
-
         print('\n')
+
         """печать переменных флоат"""
+        print(colored("Переменные флоат: ", 'magenta', attrs=['reverse', 'blink']))
         print(colored(res_a_float, 'magenta'))
         res_a_str.clear()
         print(colored(res_f_float, 'magenta'))
@@ -270,6 +320,7 @@ def receive_data_from_server():
         print(colored(res_l_float, 'magenta'))
         res_l_str.clear()
         print('')
+
         """если нет данных выход из цикла"""
         if not data:
             break
@@ -278,15 +329,14 @@ def receive_data_from_server():
         #conn.send(data)
 
     """Закрываем подключение"""
-    #conn.close()
+    conn.close()
 
 def print_Data_001(j):
-    print(colored("Iteration  " + str(j) + ":", 'red', attrs=['reverse', 'blink']))
-
+    print(colored("Иттерация  " + str(j) + ":", 'red', attrs=['reverse', 'blink']))
 
 j = 0
 while True:
     j = j + 1
     receive_data_from_server()
     print_Data_001(j)
-    time.sleep(1)
+    #time.sleep(1)
