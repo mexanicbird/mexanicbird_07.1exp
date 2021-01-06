@@ -38,20 +38,21 @@ def receive_data_from_server():
     conn, addr = sock.accept()
     print('connected:', addr)
 
-    """цикл передачи данных"""
+    """цикл опроса получения данных"""
     while True:
 
         """Запрос точного времени"""
         time_now = datetime.datetime.now()
-
+        """пытаемся получить"""
         try:
             data = conn.recv(4096)
         except:
             break
         print(colored("data from home server", 'green', attrs=['reverse', 'blink']))
         print(colored(str(time_now) + '\n', 'green', attrs=['reverse', 'blink']))
-        #print(data)
-        #print(type(data))
+        """если нет данных выход из цикла"""
+        if not data:
+            break
 
         """обрабатываем данные"""
         data_str = data.decode('utf-8')
@@ -306,10 +307,6 @@ def receive_data_from_server():
         print(colored(res_k_float, 'magenta'))
         print(colored(res_l_float, 'magenta'))
         print('')
-
-        """если нет данных выход из цикла"""
-        if not data:
-            break
 
         """обратная отправка данных"""
         #conn.send(data)
