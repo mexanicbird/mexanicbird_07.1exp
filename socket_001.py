@@ -139,10 +139,20 @@ def receive_data_from_server():
 
         print(colored("Полученные данные: ", 'yellow', attrs=['reverse', 'blink']))
         """обработка и печать выбранных строк"""
-        del res_a_str[0]
-        #res_a_str.pop(0)
+
+        """обнуляем массив"""
+        try:
+            del res_a_str[0]
+            #res_a_str.pop(0)
+        except:
+            break
         res_a_str_b = ''.join(res_a_str)
-        res_a_float = float(res_a_str_b)
+
+        """переводим во флоат"""
+        try:
+            res_a_float = float(res_a_str_b)
+        except:
+            res_a_float = None
         print(colored(res_a_str, 'cyan', ))
         print(colored(res_a_str_b, 'cyan', ))
 
