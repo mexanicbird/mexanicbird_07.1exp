@@ -5,7 +5,6 @@ import datetime
 import time
 
 """переменные"""
-
 res_a_str = []
 res_f_str = []
 res_c_str = []
@@ -36,16 +35,14 @@ def receive_data_from_server():
     sock.bind(('', 9090))
     sock.listen(1)
     conn, addr = sock.accept()
-    print('connected:', addr)
-
+    print(colored("connected:" + str(addr), 'green', attrs=['reverse', 'blink', 'bold']))
     """цикл опроса получения данных"""
     while True:
-
         """Запрос точного времени"""
         time_now = datetime.datetime.now()
         """пытаемся получить"""
         try:
-            data = conn.recv(4096)
+            data = conn.recv(256)
         except:
             break
         print(colored("data from home server", 'green', attrs=['reverse', 'blink']))
@@ -59,7 +56,7 @@ def receive_data_from_server():
         print(colored(data_str, 'green', ))
         data_str_num = len(data_str)
         print ('\n')
-        print(colored("Длина массива: ", 'blue', attrs=['reverse', 'blink']))
+        print(colored("Длина массива: " + str(data_str_num), 'blue', attrs=['reverse', 'blink']))
 
         """начало строк по меткам"""
         try:
@@ -183,7 +180,6 @@ def receive_data_from_server():
             if i == 'q':
                 conn.close()
 
-        print(colored("Полученные данные: ", 'green', attrs=['reverse', 'blink']))
         """обработка и печать выбранных строк"""
 
         try:
@@ -242,45 +238,57 @@ def receive_data_from_server():
         """переводим во флоат"""
         try:
             res_a_float = float(res_a_str_b)
+            res_a_str.clear()
         except:
             res_a_float = None
         try:
             res_f_float = float(res_f_str_b)
+            res_f_str.clear()
         except:
             res_f_float = None
         try:
             res_c_float = float(res_c_str_b)
+            res_c_str.clear()
         except:
             res_c_float = None
         try:
             res_d_float = float(res_d_str_b)
+            res_d_str.clear()
         except:
             res_d_float = None
         try:
             res_e_float = float(res_e_str_b)
+            res_e_str.clear()
         except:
             res_e_float = None
         try:
             res_g_float = float(res_g_str_b)
+            res_g_str.clear()
         except:
             res_g_float = None
         try:
             res_h_float = float(res_h_str_b)
+            res_h_str.clear()
         except:
             res_h_float = None
         try:
             res_i_float = float(res_i_str_b)
+            res_i_str.clear()
         except:
             res_i_float = None
         try:
             res_k_float = float(res_k_str_b)
+            res_k_str.clear()
         except:
             res_k_float = None
         try:
             res_l_float = float(res_l_str_b)
+            res_l_str.clear()
         except:
             res_l_float = None
 
+        print(colored("Полученные данные: ", 'green', attrs=['reverse', 'blink']))
+        print(colored("Переменные в строках: ", 'green', attrs=['reverse', 'blink']))
         """печать переменных в строках"""
         print(colored(res_a_str, 'green', ))
         print(colored(res_f_str, 'green', ))
@@ -327,11 +335,23 @@ def receive_data_from_server():
     conn.close()
 
 def print_Data_001(j):
-    print(colored("Иттерация  " + str(j) + ":", 'red', attrs=['reverse', 'blink']))
+    print(colored("Иттерация:  " + str(j) + " ", 'red', attrs=['reverse', 'blink']))
 
+"""цикл функции"""
 j = 0
 while True:
     j = j + 1
-    receive_data_from_server()
+    """Подсчет времени выполнения"""
+    start_time = time.time()
+
+    """основная функция"""
+    try:
+        receive_data_from_server()
+    except:
+        print(colored("Ошибка выполнения функции", 'yellow', attrs=['reverse', 'blink']))
+
+    """вспомогательные функции"""
+    print(colored("Время выполнения:  " + str(round((time.time() - start_time), 3)) +
+                  " секунд", 'white', attrs=['reverse', 'blink']))
     print_Data_001(j)
-    #time.sleep(1)
+    print('\n')
