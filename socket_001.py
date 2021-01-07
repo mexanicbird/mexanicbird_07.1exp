@@ -16,20 +16,22 @@ res_i_str = []
 res_k_str = []
 res_l_str = []
 
-res_a_float = None
-res_f_float = None
-res_c_float = None
-res_d_float = None
-res_e_float = None
-res_g_float = None
-res_h_float = None
-res_i_float = None
-res_k_float = None
-res_l_float = None
+res_a_fl = None
+res_f_fl = None
+res_c_fl = None
+res_d_fl = None
+res_e_fl = None
+res_g_fl = None
+res_h_fl = None
+res_i_fl = None
+res_k_fl = None
+res_l_fl = None
+time_now = []
 
 """функция получения данных от домашнего сервера"""
 def receive_data_from_server():
-    global res_a_str
+    global res_a_fl, res_f_fl, res_c_fl, res_d_fl, res_e_fl, res_g_fl, res_h_fl, res_i_fl, \
+        res_k_fl, res_l_fl, time_now
     """подключение сокета"""
     sock = socket.socket()
     sock.bind(('', 9090))
@@ -37,26 +39,41 @@ def receive_data_from_server():
     conn, addr = sock.accept()
     print(colored("connected:" + str(addr), 'green', attrs=['reverse', 'blink', 'bold']))
     """цикл опроса получения данных"""
+
+    """Запрос точного времени"""
+    time_now = datetime.datetime.now()
+
     while True:
-        """Запрос точного времени"""
-        time_now = datetime.datetime.now()
         """пытаемся получить"""
         try:
             data = conn.recv(256)
-        except:
-            break
-        print(colored("data from home server", 'green', attrs=['reverse', 'blink']))
-        print(colored(str(time_now) + '\n', 'green', attrs=['reverse', 'blink']))
-        """если нет данных выход из цикла"""
-        if not data:
-            break
+            print(colored("Данные получены ", 'green', attrs=['reverse', 'blink']))
+            """обрабатываем данные"""
+            data_str = data.decode('utf-8')
+            print(colored(data_str, 'green', ))
+            data_str_num = len(data_str)
+            print('\n')
+            print(colored("data from home server", 'green', attrs=['reverse', 'blink']))
+            print(colored(str(time_now) + '\n', 'green', attrs=['reverse', 'blink']))
+            print(colored("Длина массива: " + str(data_str_num), 'blue', attrs=['reverse', 'blink']))
 
-        """обрабатываем данные"""
-        data_str = data.decode('utf-8')
-        print(colored(data_str, 'green', ))
-        data_str_num = len(data_str)
-        print ('\n')
-        print(colored("Длина массива: " + str(data_str_num), 'blue', attrs=['reverse', 'blink']))
+            '''условия выхода из цикла'''
+            for i in data_str:
+                if i == 'q':
+                    print(colored("Выход по заполнению ", 'blue', attrs=['reverse', 'blink']))
+                    """Закрываем подключение"""
+                    conn.close()
+                    break
+            if not data:
+                print(colored("Выход по отсутсвию данных ", 'blue', attrs=['reverse', 'blink']))
+                """Закрываем подключение"""
+                conn.close()
+                break
+        except:
+            """Закрываем подключение"""
+            conn.close()
+            print(colored("Выход по except ", 'blue', attrs=['reverse', 'blink']))
+            break
 
         """начало строк по меткам"""
         try:
@@ -117,10 +134,10 @@ def receive_data_from_server():
         for i in data_str:
             if i == 'a':
                 for i in data_str[num_data_a:data_str_num]:
-                   if i == '\n':
-                       break
-                   else:
-                       res_a_str.append(i)
+                    if i == '\n':
+                        break
+                    else:
+                        res_a_str.append(i)
             if i == 'f':
                 for i in data_str[num_data_f:data_str_num]:
                     if i == '\n':
@@ -176,9 +193,9 @@ def receive_data_from_server():
                     else:
                         res_l_str.append(i)
 
-            """Закрываем подключение"""
-            if i == 'q':
-                conn.close()
+            #"""Закрываем подключение"""
+            #if i == 'q':
+               #conn.close()
 
         """обработка и печать выбранных строк"""
 
@@ -235,58 +252,6 @@ def receive_data_from_server():
         res_k_str_b = ''.join(res_k_str)
         res_l_str_b = ''.join(res_l_str)
 
-        """переводим во флоат"""
-        try:
-            res_a_float = float(res_a_str_b)
-            res_a_str.clear()
-        except:
-            res_a_float = None
-        try:
-            res_f_float = float(res_f_str_b)
-            res_f_str.clear()
-        except:
-            res_f_float = None
-        try:
-            res_c_float = float(res_c_str_b)
-            res_c_str.clear()
-        except:
-            res_c_float = None
-        try:
-            res_d_float = float(res_d_str_b)
-            res_d_str.clear()
-        except:
-            res_d_float = None
-        try:
-            res_e_float = float(res_e_str_b)
-            res_e_str.clear()
-        except:
-            res_e_float = None
-        try:
-            res_g_float = float(res_g_str_b)
-            res_g_str.clear()
-        except:
-            res_g_float = None
-        try:
-            res_h_float = float(res_h_str_b)
-            res_h_str.clear()
-        except:
-            res_h_float = None
-        try:
-            res_i_float = float(res_i_str_b)
-            res_i_str.clear()
-        except:
-            res_i_float = None
-        try:
-            res_k_float = float(res_k_str_b)
-            res_k_str.clear()
-        except:
-            res_k_float = None
-        try:
-            res_l_float = float(res_l_str_b)
-            res_l_str.clear()
-        except:
-            res_l_float = None
-
         print(colored("Полученные данные: ", 'green', attrs=['reverse', 'blink']))
         print(colored("Переменные в строках: ", 'green', attrs=['reverse', 'blink']))
         """печать переменных в строках"""
@@ -302,22 +267,74 @@ def receive_data_from_server():
         print(colored(res_l_str, 'green', ))
         print('\n')
 
+        """переводим во флоат"""
+        try:
+            res_a_fl = float(res_a_str_b)
+            res_a_str.clear()
+        except:
+            res_a_fl = None
+        try:
+            res_f_fl = float(res_f_str_b)
+            res_f_str.clear()
+        except:
+            res_f_fl = None
+        try:
+            res_c_fl = float(res_c_str_b)
+            res_c_str.clear()
+        except:
+            res_c_fl = None
+        try:
+            res_d_fl = float(res_d_str_b)
+            res_d_str.clear()
+        except:
+            res_d_fl = None
+        try:
+            res_e_fl = float(res_e_str_b)
+            res_e_str.clear()
+        except:
+            res_e_fl = None
+        try:
+            res_g_fl = float(res_g_str_b)
+            res_g_str.clear()
+        except:
+            res_g_fl = None
+        try:
+            res_h_fl = float(res_h_str_b)
+            res_h_str.clear()
+        except:
+            res_h_fl = None
+        try:
+            res_i_fl = float(res_i_str_b)
+            res_i_str.clear()
+        except:
+            res_i_fl = None
+        try:
+            res_k_fl = float(res_k_str_b)
+            res_k_str.clear()
+        except:
+            res_k_fl = None
+        try:
+            res_l_fl = float(res_l_str_b)
+            res_l_str.clear()
+        except:
+            res_l_fl = None
+
         """печать переменных флоат"""
         print(colored("Переменные флоат: ", 'magenta', attrs=['reverse', 'blink']))
-        print(colored(res_a_float, 'magenta'))
-        print(colored(res_f_float, 'magenta'))
-        print(colored(res_c_float, 'magenta'))
-        print(colored(res_d_float, 'magenta'))
-        print(colored(res_e_float, 'magenta'))
-        print(colored(res_g_float, 'magenta'))
-        print(colored(res_h_float, 'magenta'))
-        print(colored(res_i_float, 'magenta'))
-        print(colored(res_k_float, 'magenta'))
-        print(colored(res_l_float, 'magenta'))
+        print(colored(res_a_fl, 'magenta'))
+        print(colored(res_f_fl, 'magenta'))
+        print(colored(res_c_fl, 'magenta'))
+        print(colored(res_d_fl, 'magenta'))
+        print(colored(res_e_fl, 'magenta'))
+        print(colored(res_g_fl, 'magenta'))
+        print(colored(res_h_fl, 'magenta'))
+        print(colored(res_i_fl, 'magenta'))
+        print(colored(res_k_fl, 'magenta'))
+        print(colored(res_l_fl, 'magenta'))
         print('')
 
         """обратная отправка данных"""
-        #conn.send(data)
+        # conn.send(data)
 
     """обнуляем массивы"""
     res_a_str.clear()
@@ -332,10 +349,17 @@ def receive_data_from_server():
     res_l_str.clear()
 
     """Закрываем подключение"""
-    conn.close()
+    #conn.close()
 
-def print_Data_001(j):
-    print(colored("Иттерация:  " + str(j) + " ", 'red', attrs=['reverse', 'blink']))
+    """Возвращаем переменные"""
+    return res_a_fl, res_f_fl, res_c_fl, res_d_fl, res_e_fl, res_g_fl, res_h_fl, res_i_fl, \
+        res_k_fl, res_l_fl, time_now
+
+def print_Data_001(y):
+    print(colored("Итерация:  " + str(y) + "                ", 'white', attrs=['reverse', 'blink']))
+    print(colored("Время выполнения:  " + str(round((time.time() - start_time), 3)) +
+                  " секунд", 'white', attrs=['reverse', 'blink']))
+
 
 """цикл функции"""
 j = 0
@@ -350,8 +374,6 @@ while True:
     except:
         print(colored("Ошибка выполнения функции", 'yellow', attrs=['reverse', 'blink']))
 
-    """вспомогательные функции"""
-    print(colored("Время выполнения:  " + str(round((time.time() - start_time), 3)) +
-                  " секунд", 'white', attrs=['reverse', 'blink']))
+    """печать сведений функции"""
     print_Data_001(j)
     print('\n')
