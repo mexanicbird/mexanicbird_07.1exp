@@ -324,3 +324,20 @@ while True:
 
     print_Data_001(j)
     print('\n')
+
+
+import time
+start_time=time.time()
+
+while (time.time() - start_time) < 300:
+  pass # ваши действия
+
+
+
+
+start_time_stop = time.time()
+if (time.time() - start_time_stop) > 1:
+    print(time.time() - start_time_stop)
+    conn.close()
+    print(colored("Выход по таймингу", 'yellow', attrs=['reverse', 'blink']))
+    break

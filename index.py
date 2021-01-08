@@ -19,21 +19,16 @@ application.config.update(dict(DATABASE=os.path.join(application.root_path, 'dts
 login_manager = LoginManager(application)
 
 
-
 @login_manager.user_loader
 def load_user(user_id):
     print("load user")
     return UserLogin().fromDB(user_id, dbase)
-
-
 
     '''Подключаем базу данных'''
 def connect_db():
     conn = sqlite3.connect(application.config['DATABASE'])
     conn.row_factory = sqlite3.Row
     return conn
-
-
 
     """Вспомогательная функция для создания БД для создания"""
 def create_db():
@@ -43,20 +38,14 @@ def create_db():
         db.commit()
         db.close()
 
-
-
     """Вспомогательная функция установления связи с БД"""
 def get_db():
     if not hasattr(g, "link_db"):
         g.link_db = connect_db()
     return g.link_db
 
-
-
     '''устанавливаем соединение с базой данных перед каждым запросом'''
 dbase = None
-
-
 
 @application.before_request
 def before_request():
@@ -64,15 +53,11 @@ def before_request():
     db = get_db()
     dbase = FDataBase(db)
 
-
-
     """Вспомогательная функция завершения связи с БД"""
 @application.teardown_appcontext
 def close_db(error):
     if hasattr(g, "link_db"):
         g.link_db.close()
-
-
 
     '''страница логина и начальная'''
 @application.route("/")
@@ -87,16 +72,12 @@ def login():
         flash('Неверная пара логин/пароль', 'error')
     return render_template("login.html", title='Авторизация')
 
-
-
     '''страница'''
 @application.route("/main", methods=["POST", "GET"])
 @login_required
 def main():
     print(url_for("main"))
     return render_template("main.html", title='Главный экран')
-
-
 
     '''страница'''
 @application.route("/moskowhole")
@@ -105,16 +86,12 @@ def moskowhole():
     print(url_for("moskowhole"))
     return render_template("moskowhole.html", title='Московская нора', t1=t1, t2=t2, h1=h1, h2=h2, p1=p1)
 
-
-
     '''страница'''
 @application.route("/southhole")
 @login_required
 def southhole():
     print(url_for("southhole"))
     return render_template("southhole.html", title='Южная нора', test = dbase.GetMenu())
-
-
 
     '''страница'''
 @application.route("/work_1")
@@ -123,15 +100,12 @@ def work_1():
     print(url_for("work_1"))
     return render_template("work_1.html", title='Рабочий проект_1')
 
-
-
     '''страница'''
 @application.route("/work_2")
 @login_required
 def work_2():
     print(url_for("work_2"))
     return render_template("work_2.html", title='Рабочий проект_2')
-
 
 
 '''для запуска на локальном хосте + включение отладки в браузере'''

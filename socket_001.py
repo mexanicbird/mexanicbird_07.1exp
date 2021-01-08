@@ -4,7 +4,7 @@ from termcolor import colored
 import datetime
 import time
 
-"""переменные"""
+"""переменные основные"""
 res_a_str = []
 res_f_str = []
 res_c_str = []
@@ -28,7 +28,22 @@ res_k_fl = None
 res_l_fl = None
 time_now = []
 
+"""переменные выходные"""
+s1_t1 = None
+s1_t2 = None
+s1_h1 = None
+s1_h2 = None
+s1_p1 = None
+s2_t1 = None
+s2_t2 = None
+s2_h1 = None
+s2_h2 = None
+s2_p1 = None
+time_recive_data = []
+
 """функция получения данных от домашнего сервера"""
+
+
 def receive_data_from_server():
     global res_a_fl, res_f_fl, res_c_fl, res_d_fl, res_e_fl, res_g_fl, res_h_fl, res_i_fl, \
         res_k_fl, res_l_fl, time_now
@@ -48,6 +63,7 @@ def receive_data_from_server():
         try:
             data = conn.recv(256)
             print(colored("Данные получены ", 'green', attrs=['reverse', 'blink']))
+
             """обрабатываем данные"""
             data_str = data.decode('utf-8')
             print(colored(data_str, 'green', ))
@@ -57,20 +73,21 @@ def receive_data_from_server():
             print(colored(str(time_now) + '\n', 'green', attrs=['reverse', 'blink']))
             print(colored("Длина массива: " + str(data_str_num), 'blue', attrs=['reverse', 'blink']))
 
-            '''условия выхода из цикла'''
+            '''условие выхода из цикла по маркеру'''
             for i in data_str:
                 if i == 'q':
                     print(colored("Выход по заполнению ", 'blue', attrs=['reverse', 'blink']))
                     """Закрываем подключение"""
                     conn.close()
                     break
+            '''условие выхода из цикла по отсутствию данных'''
             if not data:
                 print(colored("Выход по отсутсвию данных ", 'blue', attrs=['reverse', 'blink']))
                 """Закрываем подключение"""
                 conn.close()
                 break
         except:
-            """Закрываем подключение"""
+            """Закрываем подключение, если в цикле возникла ошибка"""
             conn.close()
             print(colored("Выход по except ", 'blue', attrs=['reverse', 'blink']))
             break
@@ -193,12 +210,11 @@ def receive_data_from_server():
                     else:
                         res_l_str.append(i)
 
-            #"""Закрываем подключение"""
-            #if i == 'q':
-               #conn.close()
+            """Закрываем подключение"""
+            # if i == 'q':
+            # conn.close()
 
-        """обработка и печать выбранных строк"""
-
+        """обработка строк - удаляем маркер переменной"""
         try:
             del res_a_str[0]
         except:
@@ -321,20 +337,17 @@ def receive_data_from_server():
 
         """печать переменных флоат"""
         print(colored("Переменные флоат: ", 'magenta', attrs=['reverse', 'blink']))
-        print(colored(res_a_fl, 'magenta'))
-        print(colored(res_f_fl, 'magenta'))
-        print(colored(res_c_fl, 'magenta'))
-        print(colored(res_d_fl, 'magenta'))
-        print(colored(res_e_fl, 'magenta'))
-        print(colored(res_g_fl, 'magenta'))
-        print(colored(res_h_fl, 'magenta'))
-        print(colored(res_i_fl, 'magenta'))
-        print(colored(res_k_fl, 'magenta'))
-        print(colored(res_l_fl, 'magenta'))
+        print(colored(str(res_a_fl) + '   ' + str(s1_t1), 'magenta'))
+        print(colored(str(res_f_fl) + '   ' + str(s1_t2), 'magenta'))
+        print(colored(str(res_c_fl) + '   ' + str(s1_h1), 'magenta'))
+        print(colored(str(res_d_fl) + '   ' + str(s1_h2), 'magenta'))
+        print(colored(str(res_e_fl) + '   ' + str(s1_p1), 'magenta'))
+        print(colored(str(res_g_fl) + '   ' + str(s2_t1), 'magenta'))
+        print(colored(str(res_h_fl) + '   ' + str(s2_t2), 'magenta'))
+        print(colored(str(res_i_fl) + '   ' + str(s2_h1), 'magenta'))
+        print(colored(str(res_k_fl) + '   ' + str(s2_h2), 'magenta'))
+        print(colored(str(res_l_fl) + '   ' + str(s2_p1), 'magenta'))
         print('')
-
-        """обратная отправка данных"""
-        # conn.send(data)
 
     """обнуляем массивы"""
     res_a_str.clear()
@@ -348,12 +361,13 @@ def receive_data_from_server():
     res_k_str.clear()
     res_l_str.clear()
 
-    """Закрываем подключение"""
-    #conn.close()
+    """Закрываем подключение (отключили потому тчто раньше нормально его закрываем)"""
+    # conn.close()
 
     """Возвращаем переменные"""
     return res_a_fl, res_f_fl, res_c_fl, res_d_fl, res_e_fl, res_g_fl, res_h_fl, res_i_fl, \
-        res_k_fl, res_l_fl, time_now
+           res_k_fl, res_l_fl, time_now
+
 
 def print_Data_001(y):
     print(colored("Итерация:  " + str(y) + "                ", 'white', attrs=['reverse', 'blink']))
@@ -361,19 +375,67 @@ def print_Data_001(y):
                   " секунд", 'white', attrs=['reverse', 'blink']))
 
 
-"""цикл функции"""
-j = 0
-while True:
-    j = j + 1
-    """Подсчет времени выполнения"""
-    start_time = time.time()
+def out_varibles_site():
+    global s1_t1, s1_t2, s1_h1, s1_h2, s1_p1, s2_t1, s2_t2, s2_h1, s2_h2, s2_p1, time_recive_data
+    '''присваиваем значения'''
+    if res_a_fl is not None:
+        s1_t1 = res_a_fl
 
-    """основная функция"""
-    try:
-        receive_data_from_server()
-    except:
-        print(colored("Ошибка выполнения функции", 'yellow', attrs=['reverse', 'blink']))
+    if res_f_fl is not None:
+        s1_t2 = res_f_fl
 
-    """печать сведений функции"""
-    print_Data_001(j)
-    print('\n')
+    if res_c_fl is not None:
+        s1_h1 = res_c_fl
+
+    if res_d_fl is not None:
+        s1_h2 = res_d_fl
+
+    if res_e_fl is not None:
+        s1_p1 = res_e_fl
+
+    if res_g_fl is not None:
+        s2_t1 = res_g_fl
+
+    if res_h_fl is not None:
+        s2_t2 = res_h_fl
+
+    if res_i_fl is not None:
+        s2_h1 = res_i_fl
+
+    if res_k_fl is not None:
+        s2_h2 = res_k_fl
+
+    if res_l_fl is not None:
+        s2_p1 = res_l_fl
+
+    if time_now is not None:
+        time_recive_data = time_now
+
+    return s1_t1, s1_t2, s1_h1, s1_h2, s1_p1, s2_t1, s2_t2, s2_h1, s2_h2, s2_p1, time_recive_data
+
+
+'''для блокировки запускка при импорте в другой файл'''
+if __name__ == "__main__":
+    """цикл функции"""
+    j = 0
+    while True:
+        j = j + 1
+        if j >= 1000000:
+            j = 0
+
+        """Подсчет времени выполнения"""
+        start_time = time.time()
+
+        """основная функция"""
+        try:
+            receive_data_from_server()
+        except:
+            print(colored("Ошибка выполнения функции", 'yellow', attrs=['reverse', 'blink']))
+
+        """переменные выходной функции"""
+        out_varibles_site()
+        """печать сведений функции"""
+        print_Data_001(j)
+        print('\n')
+
+'''условие выхода из цикла по таймингу'''
