@@ -27,7 +27,7 @@ res_i_fl = None
 res_k_fl = None
 res_l_fl = None
 time_now = []
-
+start_time =[]
 """переменные выходные"""
 s1_t1 = None
 s1_t2 = None
@@ -40,6 +40,7 @@ s2_h1 = None
 s2_h2 = None
 s2_p1 = None
 time_recive_data = []
+j = 0
 
 """функция получения данных от домашнего сервера"""
 
@@ -414,28 +415,36 @@ def out_varibles_site():
     return s1_t1, s1_t2, s1_h1, s1_h2, s1_p1, s2_t1, s2_t2, s2_h1, s2_h2, s2_p1, time_recive_data
 
 
+def start_server():
+    """Подсчет времени выполнения"""
+    global start_time, j
+    start_time = time.time()
+
+    """основная функция"""
+    try:
+        receive_data_from_server()
+    except:
+        print(colored("Ошибка выполнения функции", 'yellow', attrs=['reverse', 'blink']))
+
+    """переменные выходной функции"""
+    out_varibles_site()
+    j = j + 1
+    if j >= 1000000:
+        j = 0
+    """печать сведений функции"""
+    print_Data_001(j)
+    print('\n')
+
+    return start_time, j
+
+
 '''для блокировки запускка при импорте в другой файл'''
 if __name__ == "__main__":
     """цикл функции"""
-    j = 0
-    while True:
-        j = j + 1
-        if j >= 1000000:
-            j = 0
+    # while True:
+    #     start_server()
 
-        """Подсчет времени выполнения"""
-        start_time = time.time()
 
-        """основная функция"""
-        try:
-            receive_data_from_server()
-        except:
-            print(colored("Ошибка выполнения функции", 'yellow', attrs=['reverse', 'blink']))
+# start_server()
 
-        """переменные выходной функции"""
-        out_varibles_site()
-        """печать сведений функции"""
-        print_Data_001(j)
-        print('\n')
 
-'''условие выхода из цикла по таймингу'''

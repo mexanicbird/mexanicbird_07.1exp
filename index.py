@@ -1,4 +1,4 @@
-
+"""импорт библиотек"""
 from flask import Flask, render_template, url_for, request, session, redirect, abort, g, flash
 from var import t1, t2, h1, h2, p1
 import sqlite3
@@ -6,8 +6,9 @@ import os
 from FDataBase import FDataBase
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required
-
 from UserLogin import UserLogin
+from socket_001 import start_server
+import socket_001
 
 """Конфигурация"""
 DATABASE = 'tmp/dtsite.db'
@@ -83,8 +84,12 @@ def main():
 @application.route("/moskowhole")
 @login_required
 def moskowhole():
+    '''итеррация сервера получения данных'''
+    start_server()
     print(url_for("moskowhole"))
-    return render_template("moskowhole.html", title='Московская нора', t1=t1, t2=t2, h1=h1, h2=h2, p1=p1)
+    return render_template("moskowhole.html", title='Московская нора',
+                           t1=socket_001.s1_t1, t2=socket_001.s1_t2,
+                           h1=socket_001.s1_h1, h2=socket_001.s1_h2, p1=socket_001.s1_p1)
 
     '''страница'''
 @application.route("/southhole")
@@ -106,6 +111,11 @@ def work_1():
 def work_2():
     print(url_for("work_2"))
     return render_template("work_2.html", title='Рабочий проект_2')
+
+'''активация сервера получения данных'''
+start_server()
+start_server()
+start_server()
 
 
 '''для запуска на локальном хосте + включение отладки в браузере'''
