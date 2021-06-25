@@ -77,6 +77,7 @@ def login():
 @application.route("/main", methods=["POST", "GET"])
 @login_required
 def main():
+    start_server()
     print(url_for("main"))
     return render_template("main.html", title='Главный экран')
 
@@ -95,6 +96,7 @@ def moskowhole():
 @application.route("/southhole")
 @login_required
 def southhole():
+    start_server()
     print(url_for("southhole"))
     return render_template("southhole.html", title='Южная нора', test = dbase.GetMenu())
 
@@ -102,6 +104,7 @@ def southhole():
 @application.route("/work_1")
 @login_required
 def work_1():
+    start_server()
     print(url_for("work_1"))
     return render_template("work_1.html", title='Рабочий проект_1')
 
@@ -109,18 +112,20 @@ def work_1():
 @application.route("/work_2")
 @login_required
 def work_2():
+    start_server()
     print(url_for("work_2"))
     return render_template("work_2.html", title='Рабочий проект_2')
 
 '''активация сервера получения данных'''
-start_server()
-start_server()
-start_server()
+#start_server()
+#start_server()
+#start_server()
 
 
 '''для запуска на локальном хосте + включение отладки в браузере'''
 if __name__ =="__main__":
     application.run(debug=True, host = '127.0.0.1')
+
 
 #if __name__ == "__main__":
     #application.run(host='31.31.196.213')
